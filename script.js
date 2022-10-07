@@ -20,7 +20,7 @@ function print(animal, n) {
       "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/beautiful-australian-shepherd-walking-royalty-free-image-168814214-1565190235.jpg?crop=0.66832xw:1xh;center,top&resize=480:*",
       "https://media.istockphoto.com/photos/corgi-pembroke-puppy-on-sea-coast-dog-beach-and-walking-concept-world-picture-id1302660208?b=1&k=20&m=1302660208&s=612x612&w=0&h=9J5V82fSRGb0yzFScHvnGxfqudZxB8RWNOfLhzcTAKY=",
     ];
-    let catstr = "";
+
     let str = "<table><tr>";
     for (let i = 0; i < 10; i++) {
       str += `<th>${animal}</th>`;
@@ -31,9 +31,7 @@ function print(animal, n) {
       str += `<td><img src="`;
       switch (animal) {
         case "cat":
-          catstr = Math.floor(Math.random() * cats.length);
-          str += cats[catstr];
-          console.log(catstr);
+          str += cats[Math.floor(Math.random() * cats.length)];
           break;
         case "dog":
           str += dogs[Math.floor(Math.random() * dogs.length)];
