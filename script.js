@@ -1,6 +1,7 @@
+"use strict";
 // let animal = prompt("-Hазвa тварини");
 // let n = prompt("кількість зображень");
-function print(animal, n) {
+function print(animal, n = 1) {
   if (isNaN(n)) {
     alert("Це не число!");
     return;
@@ -22,26 +23,35 @@ function print(animal, n) {
     ];
 
     let str = "<table><tr>";
+    let count = n;
+    let check = 0;
     for (let i = 0; i < 10; i++) {
       str += `<th>${animal}</th>`;
     }
     str += "</tr>";
-    for (let i = 0; i < n; i++) {
-      if (i % 10 == 0) str += "<tr>";
-      str += `<td><img src="`;
-      switch (animal) {
-        case "cat":
-          str += cats[Math.floor(Math.random() * cats.length)];
-          break;
-        case "dog":
-          str += dogs[Math.floor(Math.random() * dogs.length)];
-          break;
-        default:
-          alert("Такої тварини нема у нашій бібліотеці");
-          return;
+
+    for (let j = 0; j < Math.ceil(n / 10); j++) {
+      str += "<tr>";
+      check = count >= 10 ? 10 : count % 10;
+      for (let i = 0; i < check; i++) {
+        console.log(count);
+        str += `<td><img src="`;
+        switch (animal) {
+          case "cat":
+            str += cats[Math.floor(Math.random() * cats.length)];
+            break;
+          case "dog":
+            str += dogs[Math.floor(Math.random() * dogs.length)];
+            break;
+          default:
+            alert("Такої тварини нема у нашій бібліотеці");
+            return;
+        }
+        str += `" alt="" height="100px" /></td>`;
       }
-      str += `" alt="" height="100px" /></td>`;
-      if ((i + 1) % 10 == 0) str += "</tr>";
+
+      str += "</tr>";
+      count -= 10;
     }
     str += "</table>";
     return str;
